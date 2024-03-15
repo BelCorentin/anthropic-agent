@@ -18,7 +18,7 @@ const Chatbot = () => {
     };
     try {
       const response = await axios.post(apiEndpoint, body, { headers });
-      return response.data.choices[0].text.trim();
+      return response.message.trim();
     } catch (error) {
       console.error("Error communicating with the API:", error.message);
       return "";
