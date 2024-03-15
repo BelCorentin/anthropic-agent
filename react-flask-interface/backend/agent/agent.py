@@ -26,5 +26,6 @@ class AnthropicAgent(BaseModel):
         ) as stream:
             for text in stream.text_stream:
                 print(text, end="", flush=True)
+                # yield text
         return text
         

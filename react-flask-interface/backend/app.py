@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from agent import AnthropicAgent
+from agent.agent import AnthropicAgent
 
 app = Flask(__name__)
 
@@ -9,7 +9,9 @@ def get_data():
         message = request.json.get('message')
     agent = AnthropicAgent()
 
-    data = {'message': agent.ask(message)}
+    response =  agent.ask(message)
+    data = {'message': response}
+    print(response)
 
     return jsonify(data)
 
