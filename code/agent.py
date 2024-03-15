@@ -10,15 +10,15 @@ class AnthropicAgent(BaseModel):
     # Setting defaults for the agent
     name: str = "No Name"
     style: str = "Normal Style"
-    client: anthropic.Anthropic = anthropic.Anthropic()
-
+    client: anthropic.Client = None
 
     class Config:
         arbitrary_types_allowed = True
 
     # Defining a ask function, which queries the Anthropic API
     def ask(self, message: str) -> str:
-
+        
+        self.client = anthropic.Client()
         with self.client.messages.stream(
             max_tokens=1024,
             messages=[{"role": "user", "content": message}],

@@ -21,5 +21,7 @@ def test_agent_initialization_no_name():
     assert agent.style == "Pirate Style"
 
 def test_agent_ask():
-    agent = AnthropicAgent(name="test", client=anthropic.Anthropic())
-    assert agent.ask("Hello") is not None
+    agent = AnthropicAgent(name="test")
+    response = agent.ask("Hello")
+    print(response)
+    assert response is not None
