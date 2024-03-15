@@ -1,0 +1,45 @@
+# this is used for the pre-commit hooks
+# and when running from the root folder (eg: in the CI)
+
+[tool.black]
+line-length = 90
+exclude = '''
+/(
+  | \.git
+  | \.mypy_cache
+)/
+'''
+force-exclude = '''
+/(
+   scratch
+)\
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 90
+skip_gitignore = true
+
+[tool.pylint]
+  [tool.pylint."MESSAGES CONTROL"]
+  # disabled messages
+  # * no-member has a lot of false positive, mypy does it better
+  disable = """
+      broad-except,
+      fixme,
+      invalid-name,
+      logging-fstring-interpolation,
+      missing-docstring,
+      no-else-return,
+      no-member,
+      protected-access,
+      too-few-public-methods,
+      too-many-locals,
+      too-many-statements,
+      useless-import-alias,
+      unspecified-encoding,
+      use-dict-literal
+  """
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
