@@ -9,11 +9,12 @@ def get_data():
         message = request.json.get('message')
     agent = AnthropicAgent()
 
-    response =  agent.ask(message)
-    data = {'message': response}
+    agent_response =  agent.ask(message)
+    response = {'message': agent_response}
     print(response)
 
-    return jsonify(data)
+    json_response = jsonify(response)
+    return json_response
 
 if __name__ == '__main__':
     app.run()

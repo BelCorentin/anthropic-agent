@@ -18,7 +18,8 @@ const Chatbot = () => {
     };
     try {
       const response = await axios.post(apiEndpoint, body, { headers });
-      return response.message.trim();
+      console.log("Response from the API:", response);
+      return response.data.message.trim();
     } catch (error) {
       console.error("Error communicating with the API:", error.message);
       return "";
@@ -44,9 +45,8 @@ const Chatbot = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${
-              message.user ? "user-message" : "ai-message"
-            }`}
+            className={`message ${message.user ? "user-message" : "ai-message"
+              }`}
           >
             {message.text}
           </div>
